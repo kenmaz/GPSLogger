@@ -52,8 +52,8 @@
     
     MKCoordinateRegion cr = self.mapView.region;
     cr.center = loc;
-    cr.span.latitudeDelta = 0.5;
-    cr.span.longitudeDelta = 0.5;
+    cr.span.latitudeDelta = 0.9;
+    cr.span.longitudeDelta = 0.9;
     [self.mapView setRegion:cr animated:NO];
 
     MyAnnotation* anno = [[MyAnnotation alloc] initWithCoordinate:loc title:[self.location.createdAt description]];

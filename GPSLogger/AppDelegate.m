@@ -20,6 +20,10 @@
     if ([CLLocationManager locationServicesEnabled]) {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
+        
+        if ([CLLocationManager significantLocationChangeMonitoringAvailable]) {
+            [_locationManager startMonitoringSignificantLocationChanges];
+        }
     } else {
         NSLog(@"fail to setup location service");
     }
