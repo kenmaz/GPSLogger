@@ -12,5 +12,5 @@
 
 @interface MapViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property Location* location;
+@property NSArray* locations;
 @end

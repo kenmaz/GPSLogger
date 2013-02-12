@@ -83,17 +83,6 @@
     [self performSegueWithIdentifier:@"map" sender:loc];
 }
 
-- (IBAction)touchAddButton:(id)sender {
-    Location* loc = [Location MR_createEntity];
-    loc.lat = [NSNumber numberWithDouble:34.1234];
-    loc.lng = [NSNumber numberWithDouble:128.1234];
-    loc.createdAt = [NSDate dateWithTimeIntervalSinceNow:[[NSTimeZone systemTimeZone] secondsFromGMT]];;
-    
-    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreWithCompletion:^(BOOL result, NSError* error){
-        [self reloadLocations];
-    }];
-}
-
 - (IBAction)touchRefreshButton:(id)sender {
     [self reloadLocations];
 }
@@ -107,7 +96,11 @@
     if ([segue.identifier isEqualToString:@"map"]) {
         Location* loc = sender;
         MapViewController* con = segue.destinationViewController;
-        con.location = loc;
+        con.locations = @[loc];
+    }
+    else if ([segue.identifier isEqualToString:@"all_map"]) {
+        MapViewController* con = segue.destinationViewController;
+        con.locations = _locations;
     }
 }
 

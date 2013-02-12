@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LogViewController : UITableViewController
-- (IBAction)touchAddButton:(id)sender;
 - (IBAction)touchRefreshButton:(id)sender;
 
 @end

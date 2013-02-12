@@ -45,19 +45,21 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    CLLocationCoordinate2D loc;
-    loc.latitude = [self.location.lat doubleValue];
-    loc.longitude = [self.location.lng doubleValue];
-    [self.mapView setCenterCoordinate:loc animated:YES];
-    
-    MKCoordinateRegion cr = self.mapView.region;
-    cr.center = loc;
-    cr.span.latitudeDelta = 0.9;
-    cr.span.longitudeDelta = 0.9;
-    [self.mapView setRegion:cr animated:NO];
-
-    MyAnnotation* anno = [[MyAnnotation alloc] initWithCoordinate:loc title:[self.location.createdAt description]];
-    [self.mapView addAnnotation:anno];
+    for (Location* location in self.locations) {
+        CLLocationCoordinate2D loc;
+        loc.latitude = [location.lat doubleValue];
+        loc.longitude = [location.lng doubleValue];
+        [self.mapView setCenterCoordinate:loc animated:YES];
+        
+        MKCoordinateRegion cr = self.mapView.region;
+        cr.center = loc;
+        cr.span.latitudeDelta = 0.9;
+        cr.span.longitudeDelta = 0.9;
+        [self.mapView setRegion:cr animated:NO];
+        
+        MyAnnotation* anno = [[MyAnnotation alloc] initWithCoordinate:loc title:[location.createdAt description]];
+        [self.mapView addAnnotation:anno];
+    }
 }
 
 - (void)didReceiveMemoryWarning
